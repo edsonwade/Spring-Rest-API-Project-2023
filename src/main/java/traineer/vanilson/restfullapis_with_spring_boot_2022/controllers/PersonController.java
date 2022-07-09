@@ -29,8 +29,7 @@ public class PersonController {
 
     @GetMapping(value = "/person/{id}")
     public ResponseEntity<Person> listAllPersonsById(@PathVariable(name = "id") Integer id) {
-        return ResponseEntity.ok(Optional.of(personService.findById(id))
-                .orElseThrow());
+        return ResponseEntity.ok(personService.findById(id));
 
     }
 
