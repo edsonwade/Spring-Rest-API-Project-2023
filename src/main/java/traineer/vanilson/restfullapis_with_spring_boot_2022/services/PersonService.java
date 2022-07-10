@@ -1,18 +1,19 @@
 package traineer.vanilson.restfullapis_with_spring_boot_2022.services;
 
-import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.model.Person;
+
+import traineer.vanilson.restfullapis_with_spring_boot_2022.vo.v1.PersonVO;
 
 import java.util.List;
 
 public interface PersonService {
 
-    List<Person> findAllPersons();
+    List<PersonVO> findAllPersons();
 
-    Person findById(Integer id);
+    PersonVO findById(Integer id);
 
-    Person createNewPerson(Person person);
+    PersonVO createNewPerson(PersonVO person);
 
-    Person updatePerson(Person person, Integer id);
+    PersonVO updatePerson(PersonVO person, Integer id);
 
     void deletePerson(Integer id);
 

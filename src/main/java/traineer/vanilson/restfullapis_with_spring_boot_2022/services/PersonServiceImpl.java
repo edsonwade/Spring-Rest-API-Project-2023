@@ -5,11 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonNotFoundException;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.mapper.DozerMapper;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.model.Person;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.repository.PersonRepository;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.vo.v1.PersonVO;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,46 +19,47 @@ public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
     private static final Logger logger = LoggerFactory.getLogger(PersonService.class);
 
+
     @Override
-    public List<Person> findAllPersons() {
-        return Optional.of(personRepository.findAll())
-                .orElseThrow(() -> new PersonNotFoundException("Person not founded..."));
+    public List<PersonVO> findAllPersons() {
+        return DozerMapper.parseListObject(personRepository.findAll(), PersonVO.class);
+
     }
 
     @Override
-    public Person findById(Integer id) {
-        Optional<Person> person = personRepository.findById(id);
-        if (person.isPresent()) {
-            logger.info(" id founded with success {}", id);
-            return person.get();
-        }
-        logger.error("The Person with id {} ", id + " doesn't exist");
-        throw new PersonNotFoundException("Person With Id " + id + " was not founded in list");
+    public PersonVO findById(Integer id) {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException("PersonVO With Id " + id + " was not founded in list"));
+        return DozerMapper.parseObject(person, PersonVO.class);
     }
 
     @Override
-    public Person createNewPerson(Person person) {
-        logger.info(" new Person created with success {}", person);
-        return personRepository.save(person);
+    public PersonVO createNewPerson(PersonVO person) {
+        logger.info(" new PersonVO created with success {}", person);
+        Person person1 = DozerMapper.parseObject(person, Person.class);
+        return DozerMapper.parseObject(personRepository.save(person1), PersonVO.class);
     }
 
     @Override
-    public Person updatePerson(Person person, Integer id) {
-        person = personRepository.findById(id).get();
-        if (id.equals(person.getId())) {
-            logger.info(" Person Updated with success {}", person);
-            return personRepository.save(person);
-
-        }
-        logger.error("The Person with id {} ", id + " doesn't exist");
-        throw new PersonNotFoundException("Person With Id " + id + " was not founded in list");
+    public PersonVO updatePerson(PersonVO person, Integer id) {
+        Person person1 = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException("PersonVO With Id "
+                        + id
+                        + " was not founded in list"));
+        if (person1.getId().equals(id))
+            logger.info(" PersonVO Updated with success {}", person);
+        return DozerMapper.parseObject(personRepository.save(person1), PersonVO.class);
 
     }
+
 
     @Override
     public void deletePerson(Integer id) {
-        Optional<Person> person = personRepository.findById(id);
-        person.ifPresent(personRepository::delete);
-        logger.info("Person with Id {}", id + " deleted with success");
+        Person person1 = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException("PersonVO With Id "
+                        + id
+                        + " was not founded in list"));
+        logger.info("Deleting with success{}", person1);
+        personRepository.delete(person1);
     }
 }
