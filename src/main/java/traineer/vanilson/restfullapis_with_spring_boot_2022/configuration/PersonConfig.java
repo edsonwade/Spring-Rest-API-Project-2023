@@ -24,7 +24,9 @@ public class PersonConfig implements CommandLineRunner {
         List<Person> people = List.of(
                 new Person("vanilson", "wayne", "vanilson@gmail.com", "Rua Luz Soriano Porto", Gender.MALE),
                 new Person("tugce", "senturk", "tugce@gmail.com", "Street Amesterdam", Gender.FEMALE),
-                new Person("Rick", "Renner", "rick@gmail.com", "mexico ", Gender.OTHER)
+                new Person("Rick", "Renner", "rick@gmail.com", "mexico ", Gender.OTHER),
+                new Person("Rui", "Renato", "rui@gmail.com", null, Gender.MALE),
+                new Person("Maria", "Madalena", "maria@gmail.com", null, Gender.FEMALE)
         );
 //        logger.info("saving person .... ");
 //        personRepository.saveAll(people);

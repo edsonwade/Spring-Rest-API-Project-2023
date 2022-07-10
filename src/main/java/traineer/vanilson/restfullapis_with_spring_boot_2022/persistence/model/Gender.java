@@ -1,7 +1,14 @@
 package traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.model;
 
-public enum Gender {
+import java.io.Serializable;
+
+public enum Gender implements Serializable {
     MALE,
     FEMALE,
-    OTHER
+    OTHER;
+
+    public String getGender() {
+        return this.name();
+    }
+
 }
