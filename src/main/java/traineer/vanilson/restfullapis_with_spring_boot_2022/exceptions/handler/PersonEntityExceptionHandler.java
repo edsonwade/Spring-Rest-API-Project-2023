@@ -35,7 +35,7 @@ public class PersonEntityExceptionHandler extends ResponseEntityExceptionHandler
                 ZonedDateTime.now(ZoneId.of("Z")),
                 webRequest.getDescription(false));
 
-        return new ResponseEntity<>(personExceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(personExceptionResponse, HttpStatus.NOT_FOUND);
     }
 
 

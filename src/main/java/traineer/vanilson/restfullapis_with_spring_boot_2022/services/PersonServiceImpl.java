@@ -34,4 +34,30 @@ public class PersonServiceImpl implements PersonService {
         logger.error("The Person with id {} ", id + " doesn't exist");
         throw new PersonNotFoundException("Person With Id " + id + " was not founded in list");
     }
+
+    @Override
+    public Person createNewPerson(Person person) {
+        logger.info(" new Person created with success {}", person);
+        return personRepository.save(person);
+    }
+
+    @Override
+    public Person updatePerson(Person person, Integer id) {
+        person = personRepository.findById(id).get();
+        if (id.equals(person.getId())) {
+            logger.info(" Person Updated with success {}", person);
+            return personRepository.save(person);
+
+        }
+        logger.error("The Person with id {} ", id + " doesn't exist");
+        throw new PersonNotFoundException("Person With Id " + id + " was not founded in list");
+
+    }
+
+    @Override
+    public void deletePerson(Integer id) {
+        Optional<Person> person = personRepository.findById(id);
+        person.ifPresent(personRepository::delete);
+        logger.info("Person with Id {}", id + " deleted with success");
+    }
 }

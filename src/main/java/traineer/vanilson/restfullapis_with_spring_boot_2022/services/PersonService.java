@@ -10,4 +10,10 @@ public interface PersonService {
 
     Person findById(Integer id);
 
+    Person createNewPerson(Person person);
+
+    Person updatePerson(Person person, Integer id);
+
+    void deletePerson(Integer id);
+
 }
