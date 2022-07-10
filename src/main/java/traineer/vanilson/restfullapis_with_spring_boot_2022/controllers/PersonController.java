@@ -47,5 +47,15 @@ public class PersonController {
                 id + " was not founded in list");
     }
 
+    @DeleteMapping(value = "/person/delete/{id}")
+    public ResponseEntity<Object> deleteParkingSpotById(@PathVariable(value = "id") int id) {
+        Person person = personService.findById(id);
+        if (person.getId().equals(id)) {
+            personService.deletePerson(id);
+            return ResponseEntity.status(HttpStatus.OK).body(" Person id deleted with successfully ");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person  with id " + id + " was  not found");
+    }
+
 
 }

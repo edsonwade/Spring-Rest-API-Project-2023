@@ -28,14 +28,8 @@ public class Person implements Serializable {
             unique = true,
             length = 40)
     private String email;
-    @Column(name = "address",
-            nullable = false,
-            length = 40)
     private String address;
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender",
-            nullable = false
-    )
     private Gender gender;
 
     public Person(String firstName, String lastName, String email, String address, Gender gender) {
