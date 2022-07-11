@@ -1,0 +1,9 @@
+#spring:
+#  datasource:
+#      driverClassName: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/testing_junit_2022?useTimezone=true&serverTimezone=UTC
+#      username: admin
+#      password:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
