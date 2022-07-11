@@ -3,6 +3,7 @@ package traineer.vanilson.restfullapis_with_spring_boot_2022.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonNotFoundException;
@@ -20,25 +21,39 @@ public class PersonController {
     private final PersonService personService;
 
 
-    @GetMapping(value = "/person")
+    @GetMapping(value = "/person",
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<Person>> listAllPersons() throws IllegalAccessException {
         return ResponseEntity.ok(Optional.of(personService.findAllPersons())
                 .orElseThrow(IllegalAccessException::new));
     }
 
-    @GetMapping(value = "/person/{id}")
+    @GetMapping(value = "/person/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE}
+    )
     public ResponseEntity<Person> listAllPersonsById(@PathVariable(name = "id") Integer id) {
         return ResponseEntity.ok(personService.findById(id));
 
     }
 
-    @PostMapping(value = "/person/createNewPerson")
+    @PostMapping(value = "/person/createNewPerson",
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE}
+    )
     public ResponseEntity<Person> createNewPerson(@RequestBody Person person) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(personService.createNewPerson(person));
     }
 
-    @PutMapping(value = "/person/update/{id}")
+    @PutMapping(value = "/person/update/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Person> updatePerson(@RequestBody Person person,
                                                @PathVariable(value = "id") Integer id) {
         if (person.getId().equals(id)) return ResponseEntity.ok(personService
