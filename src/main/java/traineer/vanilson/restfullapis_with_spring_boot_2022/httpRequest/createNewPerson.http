@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ###
-PUT  http://localhost:8080/api/v1/person/update/9
+PUT  http://localhost:8080/api/v1/person/update/
 Content-Type: application/json
 
 {
@@ -23,6 +23,13 @@ Content-Type: application/json
 }
 
 ###
+<<<<<<< HEAD
 DELETE http://localhost:8080/api/v1/person/delete/5
+=======
+
+DELETE http://localhost:8080/api/v1/person/delete/1
+
+
+>>>>>>> 92c3238013c9fc6d6f3c2bc56e4530c892af95df
 
 ###
