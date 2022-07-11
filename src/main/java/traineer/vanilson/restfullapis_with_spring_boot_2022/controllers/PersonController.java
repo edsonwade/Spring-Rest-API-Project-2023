@@ -64,7 +64,7 @@ public class PersonController {
                     MediaType.APPLICATION_YML})
     public ResponseEntity<Person> updatePerson(@RequestBody Person person,
                                                @PathVariable(value = "id") Integer id) {
-        if (person.getId().equals(id)) return ResponseEntity.ok(personService
+        if (person.getPerson_id().equals(id)) return ResponseEntity.ok(personService
                 .updatePerson(person, id));
         throw new PersonNotFoundException("Person With Id " +
                 id + " was not founded in list");
@@ -73,7 +73,7 @@ public class PersonController {
     @DeleteMapping(value = "/person/delete/{id}")
     public ResponseEntity<Object> deleteParkingSpotById(@PathVariable(value = "id") int id) {
         Person person = personService.findById(id);
-        if (person.getId().equals(id)) {
+        if (person.getPerson_id().equals(id)) {
             personService.deletePerson(id);
             return ResponseEntity.status(HttpStatus.OK).body(" Person id deleted with successfully ");
         }

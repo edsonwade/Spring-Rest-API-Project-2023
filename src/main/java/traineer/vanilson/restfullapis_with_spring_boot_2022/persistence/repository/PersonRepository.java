@@ -6,4 +6,5 @@ import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.model.Pe
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Integer> {
+
 }
