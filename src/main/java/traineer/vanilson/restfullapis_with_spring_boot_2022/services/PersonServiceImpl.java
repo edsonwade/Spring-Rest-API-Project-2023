@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.controllers.PersonController;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonNotFoundException;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.RequiredObjectIsNullException;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.model.Person;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.repository.PersonRepository;
 
@@ -49,6 +50,8 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person createNewPerson(Person person) {
 
+        if (person == null) throw new RequiredObjectIsNullException();
+
         logger.info(" new Person created with success {}", person);
         person.add(linkTo(methodOn(PersonController.class)
                 .listAllPersonsById(person.getPerson_id()))
@@ -61,6 +64,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person updatePerson(Person person, Integer id) {
+        if (person == null) throw new RequiredObjectIsNullException();
         person = personRepository.findById(id).get();
         if (id.equals(person.getPerson_id())) {
             logger.info(" Person Updated with success {}", person);
