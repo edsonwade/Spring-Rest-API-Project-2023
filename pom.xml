@@ -15,10 +15,7 @@
     <description>Restfull APIs With Spring Boot 2022</description>
     <properties>
         <java.version>11</java.version>
-<<<<<<< HEAD
-=======
         <dozer.version>6.5.2</dozer.version>
->>>>>>> 92c3238013c9fc6d6f3c2bc56e4530c892af95df
     </properties>
     <dependencies>
         <dependency>
@@ -103,8 +100,12 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.9</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -121,5 +122,25 @@
             </plugin>
         </plugins>
     </build>
+    <!--<repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>-->
 
 </project>
