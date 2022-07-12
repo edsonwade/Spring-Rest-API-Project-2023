@@ -24,8 +24,7 @@ Spring boot from scratch 2022.
  9-Rest Assured ,Testcontainers, and JUnit 5
 
 
-#http://localhost:8080/v3/api-docs) swagger api
-
-# swagger documentation http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/v3/api-docs) swagger api
+swagger documentation http://localhost:8080/swagger-ui/index.html
 
 
