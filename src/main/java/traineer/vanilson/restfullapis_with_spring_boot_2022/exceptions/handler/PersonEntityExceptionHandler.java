@@ -9,6 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonExceptionResponse;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonNotFoundException;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.RequiredObjectIsNullException;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -36,6 +37,17 @@ public class PersonEntityExceptionHandler extends ResponseEntityExceptionHandler
                 webRequest.getDescription(false));
 
         return new ResponseEntity<>(personExceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = RequiredObjectIsNullException.class)
+    public final ResponseEntity<PersonExceptionResponse> handleBadRequestException(
+            Exception e, WebRequest webRequest) {
+        PersonExceptionResponse personExceptionResponse = new PersonExceptionResponse(
+                e.getMessage(),
+                ZonedDateTime.now(ZoneId.of("Z")),
+                webRequest.getDescription(false));
+
+        return new ResponseEntity<>(personExceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
 
