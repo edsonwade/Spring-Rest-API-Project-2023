@@ -16,9 +16,16 @@ Spring boot from scratch 2022.
  1-Flyway Migration
  2-Content Negotiation
  3-Hateoas(Hypermedia as the engine of Application State)
- 4-Swagger
+ 4-Swagger(OpenAPI)
  5-Cors(cross origin resource sharing)
  6-Spring Security(Authentication with JWT)
  7-Docker,Prometheus,Grafana
  8-Pipeline CI/CD at AWS with Github Actions
  9-Rest Assured ,Testcontainers, and JUnit 5
+
+
+#http://localhost:8080/v3/api-docs) swagger api
+
+# swagger documentation http://localhost:8080/swagger-ui/index.html
+
+
