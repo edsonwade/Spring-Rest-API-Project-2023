@@ -11,21 +11,24 @@ Spring boot from scratch 2022.
 <img align="center" alt="mongo" src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
 </div>
 
-# Implementations
+## Implementations
 
- 1-Flyway Migration
- 2-Content Negotiation
- 3-Hateoas(Hypermedia as the engine of Application State)
- 4-Swagger(OpenAPI)
- 5-Cors(cross origin resource sharing)
- 6-Spring Security(Authentication with JWT)
- 7-Docker,Prometheus,Grafana
- 8-Pipeline CI/CD at AWS with Github Actions
- 9-Rest Assured ,Testcontainers, and JUnit 5
+[1-Flyway Migration] 
+[2-Content Negotiation]
+[3-Hateoas](Hypermedia as the engine of Application State)
+[4-Swagger(OpenAPI)]
+[5-Cors(cross origin resource sharing)]
+[6-Spring Security(Authentication with JWT)]
+[7-Docker,Prometheus,Grafana]
+[8-Pipeline CI/CD at AWS with Github Actions]
+[9-Rest Assured ,Testcontainers, and JUnit 5]
 
 
-#http://localhost:8080/v3/api-docs) swagger api
+[swagger api](http://localhost:8080/v3/api-docs)
 
-# swagger documentation http://localhost:8080/swagger-ui/index.html
+[ swagger documentation](http://localhost:8080/swagger-ui/index.html)
+
+
+[Documenting a Spring REST API following the OpenAPI specification](https://lankydan.dev/documenting-a-spring-rest-api-following-the-openapi-specification)
 
 

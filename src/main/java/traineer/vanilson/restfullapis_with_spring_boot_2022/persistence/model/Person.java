@@ -44,6 +44,15 @@ public class Person extends RepresentationModel<Person> implements Serializable 
         this.gender = gender;
     }
 
+    public Person(Integer person_id, String firstName, String lastName, String email, String address, Gender gender) {
+        this.person_id = person_id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.gender = gender;
+    }
+
     public Integer getPerson_id() {
         return person_id;
     }

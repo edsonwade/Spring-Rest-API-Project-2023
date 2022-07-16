@@ -35,3 +35,16 @@ java.lang.NoClassDefFoundError: Could not initialize class com.intellij.util.io.
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+Hibernate:
+    update
+        tb_persons
+    set
+        address=?,
+        email=?,
+        first_name=?,
+        gender=?,
+        last_name=?
+    where
+        person_id=?

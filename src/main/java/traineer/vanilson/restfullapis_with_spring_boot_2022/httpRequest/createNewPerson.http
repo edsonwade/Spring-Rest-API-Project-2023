@@ -11,25 +11,24 @@ Content-Type: application/json
 }
 
 ###
-PUT  http://localhost:8080/api/v1/person/update/
+PUT  http://localhost:8080/api/v1/person/update/10
 Content-Type: application/json
 
 {
-  "firstName": "Angel",
-  "lastName": "joly",
-  "email": "angel@gmail.com",
-  "address": "usa central park 99",
-  "gender": "FEMALE"
+  "firstName": "victor",
+  "lastName": "oliveira",
+  "email": "victor@outloo.br",
+  "address": "fortaleza",
+  "gender": "MALE"
 }
 
 ###
-<<<<<<< HEAD
+
 DELETE http://localhost:8080/api/v1/person/delete/5
-=======
+
 
 DELETE http://localhost:8080/api/v1/person/delete/1
 
-
->>>>>>> 92c3238013c9fc6d6f3c2bc56e4530c892af95df
-
 ###
+
+

@@ -39,7 +39,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person findById(Integer id) {
         Person person = personRepository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException("Person With Id " + id + " was not founded in list"));
+                .orElseThrow(() -> new PersonNotFoundException("Person With Id " + id + " was not found in list"));
 
         person.add(linkTo(methodOn(PersonController.class).listAllPersonsById(id)).withSelfRel());
         logger.info(" found the person with id {}", id);
@@ -64,15 +64,27 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person updatePerson(Person person, Integer id) {
+        logger.error(" Person cannot be null {}", person);
         if (person == null) throw new RequiredObjectIsNullException();
-        person = personRepository.findById(id).get();
-        if (id.equals(person.getPerson_id())) {
-            logger.info(" Person Updated with success {}", person);
-            return personRepository.save(person);
+
+        if (!personRepository.existsById(id)) {
+            logger.error("The Person with id {} ", id + " doesn't exist");
+            throw new PersonNotFoundException("Person With Id " + id + " was not found in list");
 
         }
-        logger.error("The Person with id {} ", id + " doesn't exist");
-        throw new PersonNotFoundException("Person With Id " + id + " was not founded in list");
+
+        Person saved = personRepository.save(
+                new Person(
+                        id,
+                        person.getFirstName(),
+                        person.getLastName(),
+                        person.getEmail(),
+                        person.getAddress(),
+                        person.getGender())
+        );
+        logger.info("Person Updated With Success");
+        return saved;
+
 
     }
 
