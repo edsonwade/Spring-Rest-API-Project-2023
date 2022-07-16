@@ -64,7 +64,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person updatePerson(Person person, Integer id) {
-        logger.error(" Person cannot be null {}", person);
         if (person == null) throw new RequiredObjectIsNullException();
 
         if (!personRepository.existsById(id)) {
