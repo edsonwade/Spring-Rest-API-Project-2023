@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.controllers.PersonController;
-import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonNotFoundException;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.ObjectNotFoundException;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.RequiredObjectIsNullException;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.model.Person;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.repository.PersonRepository;
@@ -39,7 +39,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person findById(Integer id) {
         Person person = personRepository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException("Person With Id " + id + " was not found in list"));
+                .orElseThrow(() -> new ObjectNotFoundException("Person With Id " + id + " was not found in list"));
 
         person.add(linkTo(methodOn(PersonController.class).listAllPersonsById(id)).withSelfRel());
         logger.info(" found the person with id {}", id);
@@ -68,7 +68,7 @@ public class PersonServiceImpl implements PersonService {
 
         if (!personRepository.existsById(id)) {
             logger.error("The Person with id {} ", id + " doesn't exist");
-            throw new PersonNotFoundException("Person With Id " + id + " was not found in list");
+            throw new ObjectNotFoundException("Person With Id " + id + " was not found in list");
 
         }
 
