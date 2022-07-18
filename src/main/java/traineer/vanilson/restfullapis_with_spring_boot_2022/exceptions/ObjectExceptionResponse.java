@@ -7,13 +7,13 @@ import java.time.ZonedDateTime;
 
 
 @Data
-public class PersonExceptionResponse implements Serializable {
+public class ObjectExceptionResponse implements Serializable {
     private static final long serialVersionUID = 1L;
     private final String message;
     private final ZonedDateTime timestamp;
     private String details;
 
-    public PersonExceptionResponse(String message, ZonedDateTime timestamp, String details) {
+    public ObjectExceptionResponse(String message, ZonedDateTime timestamp, String details) {
         this.message = message;
         this.timestamp = timestamp;
         this.details = details;

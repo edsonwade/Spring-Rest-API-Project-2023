@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonExceptionResponse;
-import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.PersonNotFoundException;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.ObjectExceptionResponse;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.ObjectNotFoundException;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.RequiredObjectIsNullException;
 
 import java.time.ZoneId;
@@ -16,38 +16,38 @@ import java.time.ZonedDateTime;
 
 @RestController
 @ControllerAdvice
-public class PersonEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class ObjectEntityExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = Exception.class)
-    public final ResponseEntity<PersonExceptionResponse> handleAll(
+    public final ResponseEntity<ObjectExceptionResponse> handleAll(
             Exception e, WebRequest webRequest) {
-        PersonExceptionResponse personExceptionResponse = new PersonExceptionResponse(
+        ObjectExceptionResponse objectExceptionResponse = new ObjectExceptionResponse(
                 e.getMessage(),
                 ZonedDateTime.now(ZoneId.of("Z")),
                 webRequest.getDescription(false));
 
-        return new ResponseEntity<>(personExceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(objectExceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = PersonNotFoundException.class)
-    public final ResponseEntity<PersonExceptionResponse> handleBadRequest(
+    @ExceptionHandler(value = ObjectNotFoundException.class)
+    public final ResponseEntity<ObjectExceptionResponse> handleBadRequest(
             Exception e, WebRequest webRequest) {
-        PersonExceptionResponse personExceptionResponse = new PersonExceptionResponse(
+        ObjectExceptionResponse objectExceptionResponse = new ObjectExceptionResponse(
                 e.getMessage(),
                 ZonedDateTime.now(ZoneId.of("Z")),
                 webRequest.getDescription(false));
 
-        return new ResponseEntity<>(personExceptionResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(objectExceptionResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = RequiredObjectIsNullException.class)
-    public final ResponseEntity<PersonExceptionResponse> handleBadRequestException(
+    public final ResponseEntity<ObjectExceptionResponse> handleBadRequestException(
             Exception e, WebRequest webRequest) {
-        PersonExceptionResponse personExceptionResponse = new PersonExceptionResponse(
+        ObjectExceptionResponse objectExceptionResponse = new ObjectExceptionResponse(
                 e.getMessage(),
                 ZonedDateTime.now(ZoneId.of("Z")),
                 webRequest.getDescription(false));
 
-        return new ResponseEntity<>(personExceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(objectExceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
 
