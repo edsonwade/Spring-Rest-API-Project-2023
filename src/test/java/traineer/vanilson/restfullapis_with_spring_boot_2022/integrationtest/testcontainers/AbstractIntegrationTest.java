@@ -5,7 +5,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.test.context.ContextConfiguration;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.lifecycle.Startables;
 
 import java.util.Map;
@@ -18,18 +18,18 @@ public class AbstractIntegrationTest {
 
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-        static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0");
+        static MariaDBContainer<?> mariadb = new MariaDBContainer<>("mariadb:latest");
 
 
         private static void startContainers() {
-            Startables.deepStart(Stream.of(mysql)).join();
+            Startables.deepStart(Stream.of(mariadb)).join();
         }
 
         private static Map<String, String> createConnectionConfiguration() {
             return Map.of(
-                    "spring.datasource.url", mysql.getJdbcUrl(),
-                    "spring.datasource.username", mysql.getUsername(),
-                    "spring.datasource.passworde", mysql.getPassword()
+                    "spring.datasource.url", mariadb.getJdbcUrl(),
+                    "spring.datasource.username", mariadb.getUsername(),
+                    "spring.datasource.password", mariadb.getPassword()
             );
 
         }
