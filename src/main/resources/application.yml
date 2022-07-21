@@ -7,3 +7,5 @@
 #  jpa:
 #    hibernate:
 #      ddl-auto: update
+#cors:
+#  originPatterns: http://localhost:8082,http://localhost:3000,http://localhost:8080

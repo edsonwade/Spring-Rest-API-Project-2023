@@ -71,7 +71,7 @@ public class PersonController {
             }
     )
     @Operation(summary = "Find People By Id", description = "Find  People By Id",
-            tags = {"People"},
+            tags= {"People"},
             responses = {
                     @ApiResponse(description = "Success"
                             , responseCode = "200"
