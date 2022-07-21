@@ -1,11 +1,18 @@
-#spring:
-#  datasource:
-#      driverClassName: com.mysql.cj.jdbc.Driver
-#      url: jdbc:mysql://localhost:3306/testing_junit_2022?useTimezone=true&serverTimezone=UTC
-#      username: admin
-#      password:
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#cors:
-#  originPatterns: http://localhost:8082,http://localhost:3000,http://localhost:8080
+spring:
+datasource:
+  driverClassName: org.mariadb.jdbc.Driver
+  url: jdbc:jdbc:mariadb://localhost:3307/customers_2022
+  username: root
+  password: mypass
+jpa:
+  hibernate:
+    ddl-auto: none
+  show-sql: true
+cors:
+  originPatterns: http://localhost:8082,http://localhost:3000,http://localhost:8080
+
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-lenght: 3600000
