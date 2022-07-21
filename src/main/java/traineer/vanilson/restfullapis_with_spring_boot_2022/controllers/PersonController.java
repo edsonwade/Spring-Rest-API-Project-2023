@@ -61,6 +61,9 @@ public class PersonController {
                 .orElseThrow(IllegalAccessException::new));
     }
 
+
+    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:8082"})
+
     @GetMapping(value = "/person/{id}",
             produces = {MediaType.APPLICATION_JSON,
                     MediaType.APPLICATION_XML,
@@ -95,6 +98,8 @@ public class PersonController {
 
     }
 
+    @CrossOrigin(origins = {"http://localhost:8080",
+            "http://localhost:8082"})
     @PostMapping(value = "/person/createNewPerson",
             produces = {MediaType.APPLICATION_JSON,
                     MediaType.APPLICATION_XML,
