@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.InvalidJwtAuthenticationException;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.ObjectExceptionResponse;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.ObjectNotFoundException;
 import traineer.vanilson.restfullapis_with_spring_boot_2022.exceptions.RequiredObjectIsNullException;
@@ -48,6 +49,17 @@ public class ObjectEntityExceptionHandler extends ResponseEntityExceptionHandler
                 webRequest.getDescription(false));
 
         return new ResponseEntity<>(objectExceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ObjectExceptionResponse> handleInvalidJwtAuthenticationException(
+            Exception e, WebRequest webRequest) {
+        ObjectExceptionResponse objectExceptionResponse = new ObjectExceptionResponse(
+                e.getMessage(),
+                ZonedDateTime.now(ZoneId.of("Z")),
+                webRequest.getDescription(false));
+
+        return new ResponseEntity<>(objectExceptionResponse, HttpStatus.FORBIDDEN);
     }
 
 
