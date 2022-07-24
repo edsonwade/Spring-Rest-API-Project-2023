@@ -8,6 +8,6 @@ import traineer.vanilson.restfullapis_with_spring_boot_2022.persistence.model.Us
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-    @Query("SELECT u.userName FROM User u WHERE u.userName =:userName")
+    @Query("SELECT u FROM User u WHERE u.userName =:userName")
     User findByUsername(@Param("userName") String userName);
 }

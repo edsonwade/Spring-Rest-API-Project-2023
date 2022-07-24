@@ -1,4 +1,4 @@
-package traineer.vanilson.restfullapis_with_spring_boot_2022.security.jwt;
+package traineer.vanilson.restfullapis_with_spring_boot_2022.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -9,7 +9,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class JwtConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-    private final TokenProviderJwt tokenProvider;
+    private final JwtTokenProvider tokenProvider;
 
 
     @Override
