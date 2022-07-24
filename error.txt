@@ -72,3 +72,28 @@ Hibernate:
                ('Aguinaldo Aragon Fernandes e Vladimir Ferraz de Abreu', '2017-11-07 15:09:01.674000', 54.00,
                 'Implantando a governança de TI');
 
+
+
+@Bean
+    protected void SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .httpBasic().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers(
+                        "/auth/signin",
+                        "/auth/refresh",
+                        "/api-docs/**",
+                        "/swagger-ui.html**"
+                ).permitAll()
+                .antMatchers("/api/**").authenticated()
+                .antMatchers("/users").denyAll()
+                .and()
+                .cors()
+                .and()
+                .apply(new JwtConfigurer(tokenProvider));
+
+
+    }

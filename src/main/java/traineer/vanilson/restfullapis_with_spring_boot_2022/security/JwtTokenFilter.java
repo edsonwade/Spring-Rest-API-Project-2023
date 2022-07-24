@@ -1,4 +1,4 @@
-package traineer.vanilson.restfullapis_with_spring_boot_2022.security.jwt;
+package traineer.vanilson.restfullapis_with_spring_boot_2022.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -16,13 +16,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtTokenFilter extends GenericFilterBean {
 
-    private final TokenProviderJwt tokenProvider;
+    private final JwtTokenProvider tokenProvider;
 
     @Override
-    public void doFilter(ServletRequest request,
-                         ServletResponse response,
-                         FilterChain filterChain) throws IOException, ServletException {
-
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         String token = tokenProvider.resolveToken((HttpServletRequest) request);
         try {
             if (token != null && tokenProvider.validateToken(token)) {
@@ -34,8 +32,6 @@ public class JwtTokenFilter extends GenericFilterBean {
         } catch (InvalidJwtAuthenticationException e) {
             e.printStackTrace();
         }
-
-        filterChain.doFilter(request, response);
-
+        chain.doFilter(request, response);
     }
 }
