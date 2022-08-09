@@ -24,8 +24,7 @@ public class AuthController {
         if (checkIfParamsIsNotNull(data))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         var token = authServices.signin(data);
-        if (token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
-        return token;
+        return token == null ? ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!") : token;
     }
 
     @SuppressWarnings("rawtypes")
@@ -36,8 +35,7 @@ public class AuthController {
         if (checkIfParamsIsNotNull(username, refreshToken))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         var token = authServices.refreshToken(username, refreshToken);
-        if (token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
-        return token;
+        return token == null ? ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!") : token;
     }
 
     private boolean checkIfParamsIsNotNull(String username, String refreshToken) {
